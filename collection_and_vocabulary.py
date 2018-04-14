@@ -24,10 +24,13 @@ def generate_collection():
     print('Collection created successfully containing %s documents' %len(collection))
     return collection
 
-def get_collection_N():
-    a= generate_vocabulary()
-    print('The vocabulary contains %s unique words' % len(a.keys()))
-    return len(a.keys())
+
+# N = 531162
+def get_collection_size():
+    a = generate_vocabulary()
+    b = (sum(a.values()))
+    print('The collection contains %s terms' % (b))
+    return b
 
 '''
 VOCABULARY
@@ -58,6 +61,7 @@ def get_vocabulary_length():
     a= generate_vocabulary()
     print('The vocabulary contains %s unique words.' %len(a.keys()))
     return len(a.keys())
+
 
 
 
