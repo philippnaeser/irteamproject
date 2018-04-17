@@ -39,21 +39,20 @@ class BM25(object):
 
 #Average_idf: average_idf = sum(map(lambda k: float(bm25.idf[k]), bm25.idf.keys())) / len(bm25.idf.keys())
 
-    def get_score(self, document, index, average_idf):
-        document = list(a.keys())
+    def get_score(self, query, index, average_idf):
         score = 0
-        for word in document:
+        for word in query:
             if word not in self.frequency[index]:
                 continue
             idf = self.idf[word] if self.idf[word] >= 0 else EPSILON * average_idf
             score += (idf * self.frequency[index][word] * (PARAM_K1 + 1)
-                      / (self.frequency[index][word] + PARAM_K1 * (1 - PARAM_B + PARAM_B * len(document) / self.avgdl)))
+                      / (self.frequency[index][word] + PARAM_K1 * (1 - PARAM_B + PARAM_B * len(query) / self.avgdl)))
         return score
 
-    def get_scores(self, document, average_idf):
+    def get_scores(self, query, average_idf):
         scores = []
         for index in xrange(self.corpus_size):
-            score = self.get_score(document, index, average_idf)
+            score = self.get_score(query, index, average_idf)
             scores.append(score)
         return scores
 
