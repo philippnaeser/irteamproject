@@ -1,3 +1,7 @@
+'''
+- query object has one attribute: list of query terms which are strings
+- query object is created from single string or list of strings
+'''
 
 class Query:
 
