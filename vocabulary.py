@@ -11,6 +11,7 @@ class Vocabulary:
         for i in range(len(list_of_terms)):
             assert type(list_of_terms[i]) is str, "every list element has to be string"
         self.vocabulary = tuple(sorted(set(list_of_terms)))
+        self.vocabulary_size=len(self.vocabulary)
 
     def get_vocabulary(self):
         return self.vocabulary
@@ -18,12 +19,7 @@ class Vocabulary:
     def print_vocabulary(self):
         print(self.vocabulary)
 
-    def double_check(self):
-        '''
-        method to double-check whether each term in vocabulary is unique
-        '''
-        if len(self.vocabulary) == len(set(self.vocabulary)):
-            print('Each word appears once in vocabulary.')
-        else:
-            print('Something went wrong when creating the vocabulary')
+    def get_vocabulary_size(self): # ||V||= 29052
+        return self.vocabulary_size
+
 
