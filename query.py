@@ -1,9 +1,5 @@
-'''
-- query object has one attribute: list of query terms which are strings
-- query object is created from single string or list of strings
-'''
 
-class Query:
+class Query: #TODO Gedanken darüber machen was ist,wenn Term zweimal in Query vorkommt
 
     def __init__(self, query_term):
         self.list_of_query_terms = []
@@ -18,3 +14,4 @@ class Query:
 
     def return_query(self):
         return self.list_of_query_terms
+
