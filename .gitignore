@@ -99,3 +99,10 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+#exclude pickle files, since they can get large here
+*.pkl
+
+#also exclude train and test from reduced task, same reason
+reduced_task/train.csv
+reduced_task/test.csv
