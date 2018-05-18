@@ -106,3 +106,4 @@ ENV/
 #also exclude train and test from reduced task, same reason
 reduced_task/train.csv
 reduced_task/test.csv
+reduced_task/dev.csv
