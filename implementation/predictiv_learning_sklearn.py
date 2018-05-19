@@ -1,3 +1,5 @@
+import time
+
 from sklearn import svm, datasets
 import numpy as np
 import matplotlib.pyplot as plt
@@ -14,7 +16,17 @@ class Predictiv_Learner_Sklearn():
 
     def do_prediction(self, X_train, X_test, y_train, y_test):
 
-        # http://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html
+        #X_test = X_test.reset_index()
+        #X_test_result = X_test
+        X_test_result = X_test.reset_index()
+        #y_test_dataframe = pd.DataFrame(y_test.values)
+        X_test_result = X_test_result.join(pd.DataFrame(y_test.values))
+
+        #X_train = X_train.as_matrix()
+        #X_test = X_test.as_matrix()
+        #y_train = y_train.values
+        #y_test = y_test.values
+
 
         # Create a simple classifier
         #logreg = LogisticRegression()
@@ -55,12 +67,14 @@ class Predictiv_Learner_Sklearn():
         # We use OneVsRestClassifier for multi-label prediction
         # Run classifier
         classifier = OneVsRestClassifier(svm.LinearSVC())
+        start_time = time.time()
         classifier.fit(X_train, Y_train)
+        print('Time for fit: --- %s seconds ---' % (time.time() - start_time))
         y_score = classifier.decision_function(X_test)
-        result = classifier.predict(X_test)
+        #result = classifier.predict(X_test)
 
         result_dataframe = pd.DataFrame(y_score)
-        print(result_dataframe.columns.values)
+        #print(result_dataframe.columns.values)
         #determine relevance score
         result_dataframe['relevance_score'] = result_dataframe[[0, 1, 2, 3]].apply(func=self.determine_relevance_score, axis=1)
 
@@ -137,9 +151,9 @@ class Predictiv_Learner_Sklearn():
         scores = result_dataframe['relevance_score']
         scores_dataframe = pd.DataFrame(scores)
 
-        X_test = X_test.reset_index()
+        #creates ranked list per each qid by sorting qid ascending
+        result = X_test_result.join(scores_dataframe)
 
-        result = X_test.join(scores_dataframe)
         result_sorted = result.sort_values(['qid', 'relevance_score'], ascending=[True, False])
 
         return result_sorted

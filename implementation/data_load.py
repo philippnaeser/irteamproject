@@ -25,15 +25,20 @@ class Data_Loader():
 
     def load_dev_data(self):
         dev_data = pickle.load(open(self.data_dev_url, "rb"))
+        sorted_data = dev_data.sort_index()
         length = len(dev_data.index)
+        #dev_data_small = dev_data
         dev_data_small = dev_data.loc[dev_data['qid'] < '100']
         length_small = len(dev_data_small.index)
+        print('Number of records: ', length_small)
 
         dev_data_rel = dev_data_small['rel']
         dev_data_pred = dev_data_small[['tfidf', 'bim25', 'unigram', 'qid']]
 
         # Limit to the two first classes, and split into training and test
         X_train, X_test, y_train, y_test = train_test_split(dev_data_pred, dev_data_rel,
-                                                            test_size=.5)
+                                                            test_size=.2)
 
+        print('Number of training data: ', len(X_train))
+        print('Number of test data: ', len(X_test))
         return X_train, y_train, X_test, y_test
