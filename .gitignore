@@ -107,3 +107,11 @@ ENV/
 reduced_task/train.csv
 reduced_task/test.csv
 reduced_task/dev.csv
+
+#Exclude the embeddings models
+our_fasttext
+our_fasttext.trainables.vectors_ngrams_lockf.npy
+our_fasttext.wv.vectors_ngrams.npy
+our_fasttextword2vec
+our_fasttextword2vec.trainables.vectors_ngrams_lockf.npy
+our_fasttextword2vec.wv.vectors_ngrams.npy
