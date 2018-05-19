@@ -61,6 +61,7 @@ class Predictiv_Learner_Sklearn():
 
         result_dataframe = pd.DataFrame(y_score)
         print(result_dataframe.columns.values)
+        #determine relevance score
         result_dataframe['relevance_score'] = result_dataframe[[0, 1, 2, 3]].apply(func=self.determine_relevance_score, axis=1)
 
 
@@ -132,8 +133,20 @@ class Predictiv_Learner_Sklearn():
 
         plt.show()
 
-        return result_dataframe['relevance_score']
+        # result = pd.concat([X_test, scores], axis=1)
+        scores = result_dataframe['relevance_score']
+        scores_dataframe = pd.DataFrame(scores)
 
+        X_test = X_test.reset_index()
+
+        result = X_test.join(scores_dataframe)
+        result_sorted = result.sort_values(['qid', 'relevance_score'], ascending=[True, False])
+
+        return result_sorted
+
+    #aggregate scores per predicted line: multiplies y-score with the label of class
+    #e.g. y-score0*0 + y_score1*1 + y_score2*2 +  y_score3*3
+    #emphasizes the highest "relevant" label since we only want to retrieve relevant docs
     def determine_relevance_score(self, values):
         result = 0.0
         for index in values.index:
