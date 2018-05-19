@@ -7,6 +7,7 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.metrics import precision_recall_curve
 from sklearn.metrics import average_precision_score
 from itertools import cycle
+import pandas as pd
 
 #we have here a multilabel case
 class Predictiv_Learner_Sklearn():
@@ -57,6 +58,11 @@ class Predictiv_Learner_Sklearn():
         classifier.fit(X_train, Y_train)
         y_score = classifier.decision_function(X_test)
         result = classifier.predict(X_test)
+
+        result_dataframe = pd.DataFrame(y_score)
+        print(result_dataframe.columns.values)
+        result_dataframe['relevance_score'] = result_dataframe[[0, 1, 2, 3]].apply(func=self.determine_relevance_score, axis=1)
+
 
         # For each class
         precision = dict()
@@ -125,3 +131,11 @@ class Predictiv_Learner_Sklearn():
         plt.legend(lines, labels, loc=(0, -.38), prop=dict(size=14))
 
         plt.show()
+
+        return result_dataframe['relevance_score']
+
+    def determine_relevance_score(self, values):
+        result = 0.0
+        for index in values.index:
+            result = result + ( index * values[index] )
+        return result
