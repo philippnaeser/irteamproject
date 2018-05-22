@@ -1,6 +1,6 @@
 # Team Project FSS 2018 - Information Retrieval and Web Search
 
-This is the documentation for our university team project, where we had the task to learn to rank on a full-text English retrieval data set for Medical Information Retrieval[http://www.cl.uni-heidelberg.de/statnlpgroup/nfcorpus/].
+This is the documentation for our university team project, where we had the task to learn to rank on a full-text English retrieval data set for [Medical Information Retrieval]([http://www.cl.uni-heidelberg.de/statnlpgroup/nfcorpus/).
 
 In order to replicate our results, the code contained in each folder should should be run sequentially. Additionally, we provide in each folder a zipped Python .pkl file that is the output of the corresponding Jupyter notebook.
 
