@@ -18,13 +18,13 @@ The zip files are sometimes split into multiple files of 100MB, since github onl
 **2_Query Representation**
 - this folder covers the process of calculating our scores for each feature for every query document pair.
 - the .ipynb file contains everything from calculating tfidf for the queries to calculating the final scores for our ranker and creating a file readable by RankLib
-- the outputs from the previous steps are ussed here, so we need those pkl files (either let the scripts run or unzip the results.zip in each pickle folder.
+- the outputs from the previous steps are used here, so we need those .pkl files (either let the scripts run or unzip the results.zip in each pickle folder.
 
 **3_ranklib_framework**
 - in this folder, we put the computed scores into the RankLib framework to create a ranking model and evaluate it on the test set.
-- To train and evaluate a ranker, simply run the pointwise_approach.sh or pairwise_approach.sh scripts. To simply evaluate the sent in models without training, use the pointwise_eval.sh or pairwise_eval.sh
+- to train and evaluate a ranker, simply run the pointwise_approach.sh or pairwise_approach.sh scripts. To simply evaluate the sent in models without training, use the pointwise_eval.sh or pairwise_eval.sh
 - both approaches use the train.csv as training, dev.csv as validation and test.csv as test set. The evaluation is run on the test set.
 - since the framework runs on java, please make sure to have JAVA_HOME set in your environment. 
-- If you are running this on windows, you may not be able to use the sh command in the powershell/cmd. You can either copy the commands and input them manually or install e.g. a version of git, which provides a sh.exe
+- if you are running this on windows, you may not be able to use the sh command in the powershell/cmd. You can either copy the commands and input them manually or install e.g. a version of git, which provides a sh.exe
 - you can also skip the calculation of the scores by unzipping the sets.zip, which contains the train, dev and test set as used in our computations
 
