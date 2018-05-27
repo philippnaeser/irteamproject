@@ -22,9 +22,15 @@ The zip files are sometimes split into multiple files of 100MB, since github onl
 
 **3_ranklib_framework**
 - in this folder, we put the computed scores into the RankLib framework to create a ranking model and evaluate it on the test set.
-- to train and evaluate a ranker, simply run the pointwise_approach.sh or pairwise_approach.sh scripts. To simply evaluate the sent in models without training, use the pointwise_eval.sh or pairwise_eval.sh
-- both approaches use the train.csv as training, dev.csv as validation and test.csv as test set. The evaluation is run on the test set.
+- to train and evaluate a ranker, simply run the pointwise_approach_mart.sh, pairwise_approach_ranknet.sh or listwise_approach_lambda.sh scripts.
+- all approaches use the train.csv as training, dev.csv as validation and test.csv as test set. The evaluation is run on the test set.
 - since the framework runs on java, please make sure to have JAVA_HOME set in your environment. 
 - if you are running this on windows, you may not be able to use the sh command in the powershell/cmd. You can either copy the commands and input them manually or install e.g. a version of git, which provides a sh.exe
 - you can also skip the calculation of the scores by unzipping the sets.zip, which contains the train, dev and test set as used in our computations
+- baselines can be evalutated using the baselines.sh script in the baseline folder. This evaluates a ranking achieved by sorting the documents per query for each feature separately
+
+
+**implementation_pointwise**
+- here we applied a binary SVM to get our own pointwise implementation. To run this, just run the pointwise_approach.ipynb notebook, and afterwards the evaluate_pointwise.sh 
+
 
