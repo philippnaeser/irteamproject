@@ -1,0 +1,1 @@
+java -jar ../3_ranklib_framework/RankLib-2.1-patched.jar -test pointwise_ranked.csv -metric2T NDCG@10 -gmax 2 -idv pointwise.ndcg10.eval.txt

@@ -106,3 +106,28 @@ ENV/
 #also exclude train and test from reduced task, same reason
 reduced_task/train.csv
 reduced_task/test.csv
+reduced_task/dev.csv
+3_ranklib_framework/train.csv
+3_ranklib_framework/dev.csv
+3_ranklib_framework/test.csv
+
+#Exclude the embeddings models
+1_document_representation/pickle/our_fasttext
+1_document_representation/pickle/our_fasttext.trainables.vectors_ngrams_lockf.npy
+1_document_representation/pickle/our_fasttext.wv.vectors_ngrams.npy
+1_document_representation/pickle/our_fasttextword2vec
+1_document_representation/pickle/our_fasttextword2vec.trainables.vectors_ngrams_lockf.npy
+1_document_representation/pickle/our_fasttextword2vec.wv.vectors_ngrams.npy
+
+alt/*
+
+3_ranklib_framework/baseline/train_tfidf.csv
+3_ranklib_framework/baseline/train_bm25.csv
+3_ranklib_framework/baseline/train_bm25_alt.csv
+3_ranklib_framework/baseline/train_unigram.csv
+3_ranklib_framework/baseline/train_cosine.csv
+3_ranklib_framework/baseline/train_fasttext.csv
+3_ranklib_framework/baseline/train_word2vec.csv
+old/reduced_task/train.csv
+old/reduced_task/test.csv
+old/reduced_task/dev.csv
