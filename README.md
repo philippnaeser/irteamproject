@@ -13,6 +13,7 @@ The zip files are sometimes split into multiple files of 100MB, since github onl
 **1_Document Representation**
 - this folder covers the feature generation process 
 - each .ipynb file covers one IR model (TFIDF, UnigramLM, BM25, Word Embeddings), and produces one or more Pandas dataframes as outputs that represents the document collection within the respective models
+- it is important to compute TFIDF before the Word Embeddings, since we use those values to weight the embeddings for each document.
 - the embeddings_experiments.ipynb documents our (failed) try of using pretrained embeddings for the rating.
 
 **2_Query Representation**
