@@ -128,6 +128,6 @@ alt/*
 3_ranklib_framework/baseline/train_cosine.csv
 3_ranklib_framework/baseline/train_fasttext.csv
 3_ranklib_framework/baseline/train_word2vec.csv
-old_/reduced_task/train.csv
-old_/reduced_task/test.csv
-old_/reduced_task/dev.csv
+old/reduced_task/train.csv
+old/reduced_task/test.csv
+old/reduced_task/dev.csv
