@@ -60,8 +60,8 @@ class Predictiv_Learner_Sklearn():
          #   average_precision))
 
         # Use label_binarize to be multi-label like settings
-        Y_test = label_binarize(y_test, classes=[0, 1, 2, 3])
-        Y_train = label_binarize(y_train, classes=[0, 1, 2, 3])
+        Y_test = label_binarize(y_test, classes=[0, 1, 2])
+        Y_train = label_binarize(y_train, classes=[0, 1, 2])
         n_classes = Y_train.shape[1]
 
         # We use OneVsRestClassifier for multi-label prediction
@@ -76,7 +76,7 @@ class Predictiv_Learner_Sklearn():
         result_dataframe = pd.DataFrame(y_score)
         #print(result_dataframe.columns.values)
         #determine relevance score
-        result_dataframe['relevance_score'] = result_dataframe[[0, 1, 2, 3]].apply(func=self.determine_relevance_score, axis=1)
+        result_dataframe['relevance_score'] = result_dataframe[[0, 1, 2]].apply(func=self.determine_relevance_score, axis=1)
 
 
         # For each class
@@ -153,6 +153,7 @@ class Predictiv_Learner_Sklearn():
 
         #creates ranked list per each qid by sorting qid ascending
         result = X_test_result.join(scores_dataframe)
+        result.rename(columns={0: 'rel'}, inplace=True)
 
         result_sorted = result.sort_values(['qid', 'relevance_score'], ascending=[True, False])
 
